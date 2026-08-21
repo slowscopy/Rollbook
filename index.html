@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一卷 Rollbook — 暗房冲洗与药水管理</title>
-<meta name="description" content="一卷 Rollbook 是面向胶片摄影的暗房冲洗与药水管理工具。支持黑白负片、黑白反转、C-41、E-6、ECN-2 五种冲洗工艺的分步计时、配方管理与药水库存扣减。">
+<title>一卷 Rollbook — 胶片拍摄全流程管理</title>
+<meta name="description" content="一卷 Rollbook 管理胶片拍摄的完整流程：档案、冲洗、配方、药水与成片。支持黑白负片、黑白反转、C-41、E-6、ECN-2 五种冲洗工艺的分步计时、配方管理与药水库存扣减。">
 <style>
   :root{
     --bg:#faf9f7; --surface:#ffffff; --line:#e5e1db;
@@ -116,8 +116,8 @@
     <div class="mark">一</div>
     <div class="brand">
       一卷 Rollbook
-      <small data-zh>暗房冲洗与药水管理</small>
-      <small data-en>Darkroom processing &amp; chemical management</small>
+      <small data-zh>胶片拍摄全流程管理</small>
+      <small data-en>Full lifecycle management for film photography</small>
     </div>
     <div class="lang">
       <button id="btn-zh" aria-pressed="true">中文</button>
@@ -144,19 +144,19 @@
   <div class="hero">
     <div data-zh>
       <h1>把一卷胶片，从装片到成片<br>完整地留下来。</h1>
-      <p class="lede">一卷 Rollbook 是面向胶片摄影的暗房冲洗与药水管理工具。支持黑白负片、黑白反转、C-41、E-6、ECN-2 五种冲洗工艺，每种工艺有各自的步骤序列、分步计时与提醒；配方记录到每一步的时间、温度、稀释比与 EI；药水按具体批次扣减用量，随时能看到估算剩余。</p>
-      <p class="sub">再往前后延伸，一卷把装片、拍摄、冲洗、药水消耗、成片与复盘串成同一条记录——每一卷胶片都有完整的前后过程，而不是散落在几个不同的地方。</p>
+      <p class="lede">一卷 Rollbook 管理胶片拍摄的完整流程：装片、拍摄、冲洗、成片到回看，每一卷都在同一份档案里，而不是散落在几个不同的地方。</p>
+      <p class="sub">真正花力气的是冲洗与药水这一段——黑白负片、黑白反转、C-41、E-6、ECN-2 五种工艺各有自己的步骤序列、分步计时与提醒；配方记录到每一步的时间、温度、稀释比与 EI；药水按具体批次扣减用量，随时能看到估算剩余。</p>
     </div>
     <div data-en>
       <h1>One roll, from loading<br>to the finished frame.</h1>
-      <p class="lede">Rollbook is a darkroom processing and chemical management app for analog film photographers. It supports five chemistries — B&amp;W negative, B&amp;W reversal, C-41, E-6 and ECN-2 — each with its own step sequence, per-step timing and alerts. Recipes carry time, temperature, dilution ratio and EI for every step, and chemical consumption is deducted from the specific batch you used, with an estimated remaining volume.</p>
-      <p class="sub">Around that core, Rollbook links loading, shooting, processing, chemical consumption, the resulting photographs and a later review into a single record — so one roll carries its whole history instead of being scattered across separate places.</p>
+      <p class="lede">Rollbook manages the full lifecycle of a roll of film — loading, shooting, processing, finished frames and later review — kept in one archive instead of scattered across separate places.</p>
+      <p class="sub">The depth is in the processing and chemical side: B&amp;W negative, B&amp;W reversal, C-41, E-6 and ECN-2 each have their own step sequence, per-step timing and alerts; recipes carry time, temperature, dilution ratio and EI for every step; and chemical consumption is deducted from the specific batch you used, with an estimated remaining volume.</p>
     </div>
   </div>
 
   <section id="features">
     <h2><span data-zh>功能</span><span data-en>Features</span></h2>
-    <p class="h2note"><span data-zh>以冲洗与药水为核心，向前后延伸到拍摄与成片。</span><span data-en>Built around processing and chemistry, extending to shooting and finished frames.</span></p>
+    <p class="h2note"><span data-zh>档案、冲洗、配方、药水与成片，串成同一条记录。</span><span data-en>Archive, processing, recipes, chemicals and finished frames — one connected record.</span></p>
     <div class="grid">
 
       <div class="card">
@@ -210,19 +210,19 @@
     <div class="shots">
       <!-- 把真机截图放到 01.png 等位置，命名保持不变 -->
       <figure class="shot">
-        <img src="01.png" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;01.png&lt;/div&gt;'">
+        <img src="01.jpg" alt="" data-base="01" onerror="imgFallback(this)">
         <figcaption><span data-zh>冲洗计时运行中</span><span data-en>Processing timer running</span></figcaption>
       </figure>
       <figure class="shot">
-        <img src="02.png" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;02.png&lt;/div&gt;'">
+        <img src="02.jpg" alt="" data-base="02" onerror="imgFallback(this)">
         <figcaption><span data-zh>药水库存与估算剩余</span><span data-en>Chemical stock &amp; estimated remaining</span></figcaption>
       </figure>
       <figure class="shot">
-        <img src="03.png" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;03.png&lt;/div&gt;'">
+        <img src="03.jpg" alt="" data-base="03" onerror="imgFallback(this)">
         <figcaption><span data-zh>配方分步参数</span><span data-en>Per-step recipe parameters</span></figcaption>
       </figure>
       <figure class="shot">
-        <img src="04.png" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;04.png&lt;/div&gt;'">
+        <img src="04.jpg" alt="" data-base="04" onerror="imgFallback(this)">
         <figcaption><span data-zh>胶片档案</span><span data-en>Roll archive</span></figcaption>
       </figure>
     </div>
@@ -429,6 +429,22 @@
 </footer>
 
 <script>
+function imgFallback(img){
+  var base = img.getAttribute('data-base') || '';
+  var tried = img.getAttribute('data-tried') || '';
+  var exts = ['png','jpeg','JPG','PNG'];
+  for (var i=0;i<exts.length;i++){
+    if (tried.indexOf(exts[i]) < 0){
+      img.setAttribute('data-tried', tried + exts[i] + ',');
+      img.src = base + '.' + exts[i];
+      return;
+    }
+  }
+  var d = document.createElement('div');
+  d.className = 'ph';
+  d.textContent = base + '.jpg / .png';
+  if (img.parentNode) img.parentNode.replaceChild(d, img);
+}
 (function(){
   var root=document.documentElement, zh=document.getElementById('btn-zh'), en=document.getElementById('btn-en');
   function set(l){
