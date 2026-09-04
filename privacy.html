@@ -5,8 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>隐私政策 — 一卷 Rollbook</title>
 <meta name="description" content="一卷 Rollbook 隐私政策：不收集个人信息，无账号、无广告、无追踪，不申请定位权限，数据以本地保存为主。">
+<script>
+try{
+  var savedTheme=localStorage.getItem('rb-theme');
+  if(savedTheme==='light'||savedTheme==='dark') document.documentElement.setAttribute('data-theme',savedTheme);
+}catch(e){}
+</script>
 <style>
   :root{
+    color-scheme:light;
     --bg:#faf9f7; --surface:#ffffff; --line:#e5e1db;
     --ink:#1c1a17; --ink-2:#4a453e; --ink-3:#807a70;
     --accent:#b4522e; --accent-soft:#f4e8e3;
@@ -14,8 +21,15 @@
     --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
             "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
   }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --bg:#141311; --surface:#1d1b18; --line:#302c27;
+    --ink:#f0ece6; --ink-2:#bdb6ab; --ink-3:#8a8279;
+    --accent:#e2825c; --accent-soft:#2a1e19;
+  }
   @media (prefers-color-scheme: dark){
-    :root{
+    :root:not([data-theme]){
+      color-scheme:dark;
       --bg:#141311; --surface:#1d1b18; --line:#302c27;
       --ink:#f0ece6; --ink-2:#bdb6ab; --ink-3:#8a8279;
       --accent:#e2825c; --accent-soft:#2a1e19;
@@ -40,17 +54,32 @@
   .bar{display:flex; align-items:center; gap:14px; padding:16px 0}
   .mark{
     width:34px;height:34px;border-radius:9px;flex:none;
-    background:var(--accent); color:#fff; display:grid; place-items:center;
-    font-weight:700; font-size:15px; letter-spacing:-.02em;
+    display:block; overflow:hidden;
   }
-  .brand{font-weight:650; font-size:16.5px; letter-spacing:-.01em}
+  .mark img{width:100%;height:100%;object-fit:cover;display:block}
+  .mark .logo-dark{display:none}
+  :root[data-theme="dark"] .mark .logo-light{display:none}
+  :root[data-theme="dark"] .mark .logo-dark{display:block}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme]) .mark .logo-light{display:none}
+    :root:not([data-theme]) .mark .logo-dark{display:block}
+  }
+  .brand{font-weight:650; font-size:16.5px; letter-spacing:-.01em; min-width:0}
   .brand small{display:block; font-weight:400; font-size:12.5px; color:var(--ink-3); letter-spacing:.02em}
-  .lang{margin-left:auto; display:flex; border:1px solid var(--line); border-radius:8px; overflow:hidden}
+  .header-actions{margin-left:auto; display:flex; align-items:center; gap:8px; flex:none}
+  .lang{display:flex; border:1px solid var(--line); border-radius:8px; overflow:hidden}
   .lang button{
     appearance:none; border:0; background:transparent; color:var(--ink-3);
     font:inherit; font-size:13px; padding:5px 11px; cursor:pointer;
   }
   .lang button[aria-pressed="true"]{background:var(--accent); color:#fff}
+  .theme-toggle{
+    appearance:none; width:34px; height:34px; padding:0; border:1px solid var(--line);
+    border-radius:8px; background:var(--surface); color:var(--ink-2); cursor:pointer;
+    display:grid; place-items:center; font:inherit; font-size:18px; line-height:1;
+  }
+  .theme-toggle:hover{color:var(--accent); border-color:var(--accent)}
+  .lang button:focus-visible,.theme-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
   nav{border-bottom:1px solid var(--line); background:var(--bg); position:sticky; top:0; z-index:5}
   nav ul{display:flex; gap:20px; list-style:none; margin:0; padding:11px 0; overflow-x:auto; font-size:14px}
@@ -113,15 +142,23 @@
 
 <header>
   <div class="wrap bar">
-    <div class="mark">一</div>
+    <a class="mark" href="index.html" aria-label="一卷 Rollbook">
+      <img class="logo-light" src="AppIconCandidate_A.png" alt="" width="34" height="34">
+      <img class="logo-dark" src="AppIconCandidate_B.png" alt="" width="34" height="34">
+    </a>
     <div class="brand">
       一卷 Rollbook
       <small data-zh>胶片拍摄全流程管理</small>
       <small data-en>Full lifecycle management for film photography</small>
     </div>
-    <div class="lang">
-      <button id="btn-zh" aria-pressed="true">中文</button>
-      <button id="btn-en" aria-pressed="false">EN</button>
+    <div class="header-actions">
+      <div class="lang" role="group" aria-label="语言 / Language">
+        <button id="btn-zh" type="button" aria-pressed="true">中文</button>
+        <button id="btn-en" type="button" aria-pressed="false">EN</button>
+      </div>
+      <button id="btn-theme" class="theme-toggle" type="button" aria-pressed="false" aria-label="切换到深色模式" title="切换到深色模式">
+        <span id="theme-icon" aria-hidden="true">☾</span>
+      </button>
     </div>
   </div>
 </header>
@@ -243,19 +280,49 @@ function imgFallback(img){
 }
 (function(){
   var root=document.documentElement, zh=document.getElementById('btn-zh'), en=document.getElementById('btn-en');
+  var theme=document.getElementById('btn-theme'), themeIcon=document.getElementById('theme-icon');
+  function activeTheme(){
+    var explicit=root.getAttribute('data-theme');
+    if(explicit==='light'||explicit==='dark') return explicit;
+    return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function updateThemeControl(){
+    var dark=activeTheme()==='dark';
+    var zhLabel=dark ? '切换到浅色模式' : '切换到深色模式';
+    var enLabel=dark ? 'Switch to light mode' : 'Switch to dark mode';
+    var label=root.getAttribute('data-lang')==='en' ? enLabel : zhLabel;
+    themeIcon.textContent=dark ? '☀︎' : '☾';
+    theme.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    theme.setAttribute('aria-label', label);
+    theme.setAttribute('title', label);
+  }
   function set(l){
     root.setAttribute('data-lang',l);
     root.setAttribute('lang', l==='zh' ? 'zh-Hans' : 'en');
     zh.setAttribute('aria-pressed', l==='zh');
     en.setAttribute('aria-pressed', l==='en');
     try{ localStorage.setItem('rb-lang', l); }catch(e){}
+    updateThemeControl();
+  }
+  function setTheme(t){
+    root.setAttribute('data-theme',t);
+    try{ localStorage.setItem('rb-theme', t); }catch(e){}
+    updateThemeControl();
   }
   zh.addEventListener('click',function(){set('zh')});
   en.addEventListener('click',function(){set('en')});
+  theme.addEventListener('click',function(){setTheme(activeTheme()==='dark' ? 'light' : 'dark')});
   var saved=null;
   try{ saved=localStorage.getItem('rb-lang'); }catch(e){}
   if(saved){ set(saved); }
   else if((navigator.language||'').toLowerCase().indexOf('zh')!==0){ set('en'); }
+  else{ updateThemeControl(); }
+  if(window.matchMedia){
+    var scheme=window.matchMedia('(prefers-color-scheme: dark)');
+    if(scheme.addEventListener) scheme.addEventListener('change',function(){
+      if(!root.hasAttribute('data-theme')) updateThemeControl();
+    });
+  }
 })();
 </script>
 
