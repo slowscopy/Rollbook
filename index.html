@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一卷 Rollbook — 胶片拍摄全流程管理</title>
-<meta name="description" content="一卷 Rollbook 管理胶片拍摄的完整流程：档案、冲洗、配方、药水与成片。支持黑白负片、黑白反转、C-41、E-6、ECN-2 五种冲洗工艺的分步计时、配方管理与药水库存扣减。">
+<title data-title-zh="一卷 Rollbook — 胶片摄影，从测光到成片" data-title-en="Rollbook — Film photography, from metering to finished frame">一卷 Rollbook — 胶片摄影，从测光到成片</title>
+<meta name="description" content="一卷 Rollbook 2.11.1 即将推出：测光、拍摄记录、数字负片、五种工艺冲洗计时、配方与库存、照片和备份。Pro 一次买断无订阅；当前 App Store 版本为 1.2.1。" data-description-zh="一卷 Rollbook 2.11.1 即将推出：测光、拍摄记录、数字负片、五种工艺冲洗计时、配方与库存、照片和备份。Pro 一次买断无订阅；当前 App Store 版本为 1.2.1。" data-description-en="Rollbook 2.11.1 is coming soon: metering, shooting logs, negative conversion, development timers, recipes, inventory, photos and backup. Pro is a one-time purchase. Current App Store release: 1.2.1.">
 <script>
 try{
   var savedTheme=localStorage.getItem('rb-theme');
@@ -136,6 +136,20 @@ try{
   .rel ul{margin:0; padding-left:19px; font-size:14.5px; color:var(--ink-2)}
 
   footer{border-top:1px solid var(--line); padding:26px 0 44px; color:var(--ink-3); font-size:13.5px}
+
+  section{scroll-margin-top:64px}
+  .release-status{margin-top:24px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+  .release-status p{font-size:14px;color:var(--ink-2);margin:0 0 14px}
+  .release-status .version-note{font-size:13px;margin:13px 0 0}
+  .download{display:inline-block;padding:10px 16px;border-radius:9px;background:var(--accent);color:var(--surface);font-size:14px;font-weight:600}
+  .download:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .table-scroll{overflow-x:auto;margin-bottom:18px}
+  table{width:100%;border-collapse:collapse;font-size:14px;background:var(--surface)}
+  th,td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--line)}
+  thead{background:var(--accent-soft)}
+  tbody th{font-weight:600}
+  .upcoming{border-color:var(--accent)}
+  @media(max-width:480px){.bar{padding:16px 22px;gap:10px}.brand small{font-size:11px}.header-actions{gap:5px}.lang button{padding:5px 8px}h1{font-size:27px}.grid{grid-template-columns:1fr}.shots{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}th,td{padding:10px 7px}.hero{padding-top:36px}}
 </style>
 </head>
 <body>
@@ -149,7 +163,7 @@ try{
     <div class="brand">
       一卷 Rollbook
       <small data-zh>胶片拍摄全流程管理</small>
-      <small data-en>Full lifecycle management for film photography</small>
+      <small data-en>Film photography, from start to finish</small>
     </div>
     <div class="header-actions">
       <div class="lang" role="group" aria-label="语言 / Language">
@@ -168,6 +182,7 @@ try{
     <ul>
       <li><a href="#features"><span data-zh>功能</span><span data-en>Features</span></a></li>
       <li><a href="#screens"><span data-zh>界面</span><span data-en>Screens</span></a></li>
+      <li><a href="#pro">Pro</a></li>
       <li><a href="#faq"><span data-zh>常见问题</span><span data-en>FAQ</span></a></li>
       <li><a href="#privacy"><span data-zh>隐私政策</span><span data-en>Privacy</span></a></li>
       <li><a href="#releases"><span data-zh>更新记录</span><span data-en>Releases</span></a></li>
@@ -180,246 +195,305 @@ try{
 
   <div class="hero">
     <div data-zh>
-      <h1>把一卷胶片，从装片到成片<br>完整地留下来。</h1>
-      <p class="lede">一卷 Rollbook 管理胶片拍摄的完整流程：装片、拍摄、冲洗、成片到回看，每一卷都在同一份档案里，而不是散落在几个不同的地方。</p>
-      <p class="sub">真正花力气的是冲洗与药水这一段——黑白负片、黑白反转、C-41、E-6、ECN-2 五种工艺各有自己的步骤序列、分步计时与提醒；配方记录到每一步的时间、温度、稀释比与 EI；药水按具体批次扣减用量，随时能看到估算剩余。</p>
+      <span class="tag">2.11.1 · 即将推出</span>
+      <h1>胶片摄影，<br>从测光到成片。</h1>
+      <p class="lede">把胶片档案、测光与拍摄记录、冲洗计时、配方、库存、数字负片转换和照片管理放在一起，让每一卷都有完整记录。</p>
+      <p class="sub">自己冲洗，或交给冲扫店；从第一次测光，到再次翻看照片，一卷陪你记录胶片的整个过程。</p>
     </div>
     <div data-en>
-      <h1>One roll, from loading<br>to the finished frame.</h1>
-      <p class="lede">Rollbook manages the full lifecycle of a roll of film — loading, shooting, processing, finished frames and later review — kept in one archive instead of scattered across separate places.</p>
-      <p class="sub">The depth is in the processing and chemical side: B&amp;W negative, B&amp;W reversal, C-41, E-6 and ECN-2 each have their own step sequence, per-step timing and alerts; recipes carry time, temperature, dilution ratio and EI for every step; and chemical consumption is deducted from the specific batch you used, with an estimated remaining volume.</p>
+      <span class="tag">2.11.1 · Coming soon</span>
+      <h1>Film photography,<br>from metering to finished frame.</h1>
+      <p class="lede">Keep film archives, metering and shooting logs, development timers, recipes, inventory, negative conversion and photographs together. A complete record for every roll.</p>
+      <p class="sub">Develop at home or use a lab. From your first meter reading to revisiting your photographs, Rollbook keeps the journey together.</p>
+    </div>
+    <div class="release-status" id="availability">
+      <p data-zh><strong>2.11.1 / Build221：即将推出，正在进行提交审核前准备，尚未在 App Store 上架。</strong>下方功能与 Pro 说明介绍此版本；不代表当前商店版已包含全部功能。</p>
+      <p data-en><strong>2.11.1 / Build221 is coming soon and is being prepared for App Review submission. It is not yet available on the App Store.</strong> The features and Pro details below describe this version; some are not in the current store release.</p>
+      <a class="download" href="https://apps.apple.com/cn/app/%E4%B8%80%E5%8D%B7-rollbook/id6786322386"><span data-zh>在 App Store 查看当前版本</span><span data-en>View the current App Store version</span></a>
+      <p class="version-note" data-zh>截至 2026-10-11，中国区 App Store 当前为 1.2.1（iOS 17.6 或更高版本）。即将推出的 2.11.1 要求 <strong>iOS 26 或更高版本</strong>；实际可下载版本以你所在地区的商店页面为准。</p>
+      <p class="version-note" data-en>As of October 11, 2026, the China App Store lists 1.2.1 (iOS 17.6 or later). The upcoming 2.11.1 requires <strong>iOS 26 or later</strong>. Check your local store page for the version available to download.</p>
     </div>
   </div>
 
   <section id="features">
-    <h2><span data-zh>功能</span><span data-en>Features</span></h2>
-    <p class="h2note"><span data-zh>档案、冲洗、配方、药水与成片，串成同一条记录。</span><span data-en>Archive, processing, recipes, chemicals and finished frames — one connected record.</span></p>
-    <div class="grid">
-
-      <div class="card">
-        <span class="tag" data-zh>冲洗</span><span class="tag" data-en>Processing</span>
-        <h3><span data-zh>五种工艺，逐步计时</span><span data-en>Five chemistries, per-step timing</span></h3>
-        <p data-zh>黑白负片、黑白反转、C-41、E-6、ECN-2 各有独立的步骤序列。反转工艺区分首显、漂白、清除浴、化学反转与二显，每一步带自己的时间、温度、稀释比与搅动方式。计时结束前逐秒提示，支持系统闹钟与本地通知双路提醒。</p>
-        <p data-en>Each chemistry has its own step sequence, not a generic countdown. Reversal, for example, treats first developer, bleach, clearing bath, chemical reversal and second developer as separate steps with their own duration, temperature, dilution and agitation. Alerts count down the final seconds, using both system alarms and local notifications.</p>
-      </div>
-
-      <div class="card">
-        <span class="tag" data-zh>配方</span><span class="tag" data-en>Recipes</span>
-        <h3><span data-zh>配方细到每一步</span><span data-en>Recipes down to each step</span></h3>
-        <p data-zh>配方记录每一步的时间、温度、稀释比、EI 与增减感，分为原厂说明书配方、参考配方与自建配方三档来源，标注清楚哪些来自厂商资料、哪些是你自己的经验。</p>
-        <p data-en>Recipes store time, temperature, dilution, EI and push/pull for every step, separated into manufacturer datasheet recipes, reference recipes and your own — so it is always clear which numbers come from the maker and which are yours.</p>
-      </div>
-
-      <div class="card">
-        <span class="tag" data-zh>药水</span><span class="tag" data-en>Chemistry</span>
-        <h3><span data-zh>按批次扣减，剩多少心里有数</span><span data-en>Per-batch consumption ledger</span></h3>
-        <p data-zh>每一瓶药水单独建档：包装容量、购入日期、开封日期、有效期与状态。每次冲洗按实际使用的那一批扣减用量，形成使用流水与估算剩余；估算不准时可以手动校准，校准也留痕。</p>
-        <p data-en>Every chemical batch is tracked individually — package size, purchase date, opened date, expiration and lifecycle state. Each session deducts from the specific batch used, producing a usage ledger and an estimated remaining volume, with manual calibration recorded as its own entry.</p>
-      </div>
-
-      <div class="card">
-        <span class="tag" data-zh>档案</span><span class="tag" data-en>Archive</span>
-        <h3><span data-zh>一卷的完整前后</span><span data-en>The whole life of one roll</span></h3>
-        <p data-zh>胶卷、相机、镜头、拍摄信息、冲洗过程、成片与评价，归在同一份档案里。支持 135、120，以及 4×5 与 8×10 页片。</p>
-        <p data-en>Film, camera, lens, shooting details, the processing session, the resulting photographs and your notes all live in one archive. 135, 120, 4x5 and 8x10 sheet film are supported.</p>
-      </div>
-
-      <div class="card">
-        <span class="tag" data-zh>成片</span><span class="tag" data-en>Photos</span>
-        <h3><span data-zh>成片归位，回看有线索</span><span data-en>Frames back where they belong</span></h3>
-        <p data-zh>扫描或翻拍的成片导入对应档案，设置封面、记录备注与评价；档案地图按地点回看自己的影像记录，一卷片刻按日整理值得重看的片段。</p>
-        <p data-en>Scans and camera-scanned frames import into their archive, with covers, notes and ratings. An archive map revisits your work by place, and a daily "Moments" view surfaces things worth looking at again.</p>
-      </div>
-
-      <div class="card">
-        <span class="tag" data-zh>数据</span><span class="tag" data-en>Your data</span>
-        <h3><span data-zh>数据在你自己手里</span><span data-en>Your data stays yours</span></h3>
-        <p data-zh>无需注册账号，不含广告与用户追踪。数据以本地保存为主，可导出完整备份文件自行保管；也可以选择开启 iCloud 备份，存放在你自己的 iCloud 私有区域。隐私档案通过设备身份验证限制访问。</p>
-        <p data-en>No account, no ads, no tracking. Data is stored locally and can be exported as a complete backup file you keep yourself. You may optionally enable an iCloud archive, stored in your own private iCloud container. Private archives are gated behind device authentication.</p>
-      </div>
-
-    </div>
+    <h2><span data-zh>从测光到成片</span><span data-en>From metering to finished frame</span></h2>
+    <p class="h2note"><span data-zh>2.11.1 功能预览 · 即将推出。标注 Pro 的功能需额外购买。</span><span data-en>2.11.1 feature preview · Coming soon. Features marked Pro require a separate purchase.</span></p>
+<div class="grid">
+<div class="card"><span class="tag" data-zh>测光</span><span class="tag" data-en>Metering</span><h3><span data-zh>平均、点、精准点与区域测光</span><span data-en>Average, spot, precision spot &amp; area metering</span></h3><p data-zh>用相机实时测光，结合光圈、快门、ISO、ND 滤镜与倒易律资料安排曝光。精准点测在点测光模式中使用；区域测光属于 Pro，可记录多个测点并安排影调。结果受设备、光线与胶片资料适用范围影响，取景变化提醒仅供参考。</p><p data-en>Use live camera metering with aperture, shutter speed, ISO, ND filters and supported reciprocity data. Precision spot is available within spot mode; Pro area metering records multiple readings for tonal placement. Results depend on your device, lighting and the applicable film data. Framing-change reminders are advisory.</p></div>
+<div class="card"><span class="tag" data-zh>数字负片</span><span class="tag" data-en>Negatives</span><h3><span data-zh>转正、去色罩，保留原片</span><span data-en>Convert negatives, keep the original</span></h3><p data-zh>导入扫描或翻拍的负片，在本机进行反相、去色罩与色彩调整，保存成片外观。归档的原始文件保留，方便回看与继续调整。</p><p data-en>Import scanned or camera-scanned negatives, then invert, remove the film mask and adjust color on your device. Save the finished look while keeping the archived original for later review and adjustment.</p></div>
+<div class="card"><span class="tag" data-zh>档案</span><span class="tag" data-en>Archive</span><h3><span data-zh>一卷的完整拍摄记录</span><span data-en>The story of every roll</span></h3><p data-zh>把胶片、相机、镜头、每次拍摄的曝光参数、参考照片和可选地点记录在同一份档案中，再关联冲洗过程与成片。支持 135、120、4×5 与 8×10 页片，也支持外部冲扫的胶片。</p><p data-en>Keep film, camera, lens, exposure settings, reference photos and optional locations in one archive, then connect development and finished photographs. Supports 135, 120, 4×5 and 8×10 sheet film, including film processed by a lab.</p></div>
+<div class="card"><span class="tag" data-zh>冲洗</span><span class="tag" data-en>Development</span><h3><span data-zh>五种工艺，逐步计时</span><span data-en>Five processes, one step at a time</span></h3><p data-zh>黑白负片、黑白反转、C-41、E-6、ECN-2 各有自己的步骤序列。按步骤记录时间、温度、稀释比与搅动方式，配合冲洗计时、本地通知及系统闹钟提醒。</p><p data-en>B&amp;W negative, B&amp;W reversal, C-41, E-6 and ECN-2 each have their own step sequence. Keep time, temperature, dilution and agitation instructions together with development timers, local notifications and system alarm reminders.</p></div>
+<div class="card"><span class="tag" data-zh>配方</span><span class="tag" data-en>Recipes</span><h3><span data-zh>分清来源，积累自己的配方</span><span data-en>Know the source, build your recipes</span></h3><p data-zh>区分原厂说明书、参考与自定义配方，记录每一步的参数、EI 与增减感。免费版五类自定义配方合计最多 5 条，Pro 解锁无限自定义配方；已有配方仍可查看、使用和编辑。</p><p data-en>Distinguish manufacturer, reference and custom recipes, with step parameters, EI and push/pull notes. The free tier allows up to 5 custom recipes across all five process types; Pro unlocks unlimited custom recipes. Existing recipes remain viewable, usable and editable.</p></div>
+<div class="card"><span class="tag" data-zh>库存</span><span class="tag" data-en>Inventory</span><h3><span data-zh>胶片、药水与器材，各有记录</span><span data-en>Film, chemicals & gear in order</span></h3><p data-zh>管理胶片库存、相机和镜头等器材，以及药水的购入、开封、有效期与批次。冲洗用量按所选药水批次记账，显示估算剩余，并支持手动校准。</p><p data-en>Track film stock, cameras and lenses, plus chemical purchases, opening dates, expiry and batches. Record consumption against the batch used, view estimated remaining quantities and make manual corrections.</p></div>
+<div class="card"><span class="tag" data-zh>照片</span><span class="tag" data-en>Photos</span><h3><span data-zh>成片归档，再遇见一卷片刻</span><span data-en>Keep photographs, revisit Moments</span></h3><p data-zh>导入与整理成片，设置封面、备注和评价，按档案与地点回看。Pro「一卷片刻」从你的真实记录和照片中整理值得重看的片段。</p><p data-en>Import and organize finished photographs, set covers, add notes and ratings, and browse by archive or location. Pro Rollbook Moments brings together things worth revisiting from your actual records and photographs.</p></div>
+<div class="card"><span class="tag" data-zh>备份</span><span class="tag" data-en>Backup</span><h3><span data-zh>本地保存，备份由你选择</span><span data-en>Local storage, your choice of backup</span></h3><p data-zh>无需注册一卷账号。可导出本地备份，或主动开启默认关闭的 iCloud 私有数据库备份，选择完整或轻量范围。备份不是多设备实时同步；本地备份文件未加密，请妥善保管。</p><p data-en>No Rollbook account required. Export a local backup, or enable the optional iCloud private-database backup with full or lightweight scope. It is off by default and is not real-time multi-device sync. Local backup files are not encrypted; store them securely.</p></div>
+</div>
   </section>
 
   <section id="screens">
     <h2><span data-zh>界面</span><span data-en>Screens</span></h2>
-    <p class="h2note"><span data-zh>以下为一卷当前版本的核心界面。</span><span data-en>Core screens from the current version of Rollbook.</span></p>
+    <p class="h2note"><span data-zh>保留自官网的旧版界面参考，拍摄版本待核实；不是 Build221 截图。Build221 真实界面图待补充。</span><span data-en>Existing website images, retained as older interface references. Their capture version is unverified; these are not presented as Build221 screenshots. Verified Build221 images will be added when available.</span></p>
     <div class="shots">
-      <!-- 把真机截图放到 01.png 等位置，命名保持不变 -->
       <figure class="shot">
-        <img src="01.jpg" alt="" data-base="01" onerror="imgFallback(this)">
+        <img src="01.jpg" alt="冲洗计时 / Development timer — 旧版参考 / older interface" loading="lazy" data-base="01" onerror="imgFallback(this)">
         <figcaption><span data-zh>冲洗计时运行中</span><span data-en>Processing timer running</span></figcaption>
       </figure>
       <figure class="shot">
-        <img src="02.jpg" alt="" data-base="02" onerror="imgFallback(this)">
+        <img src="02.jpg" alt="药水库存 / Chemical inventory — 旧版参考 / older interface" loading="lazy" data-base="02" onerror="imgFallback(this)">
         <figcaption><span data-zh>药水库存与估算剩余</span><span data-en>Chemical stock &amp; estimated remaining</span></figcaption>
       </figure>
       <figure class="shot">
-        <img src="03.jpg" alt="" data-base="03" onerror="imgFallback(this)">
+        <img src="03.jpg" alt="配方参数 / Recipe parameters — 旧版参考 / older interface" loading="lazy" data-base="03" onerror="imgFallback(this)">
         <figcaption><span data-zh>配方分步参数</span><span data-en>Per-step recipe parameters</span></figcaption>
       </figure>
       <figure class="shot">
-        <img src="04.jpg" alt="" data-base="04" onerror="imgFallback(this)">
+        <img src="04.jpg" alt="胶片档案 / Film archive — 旧版参考 / older interface" loading="lazy" data-base="04" onerror="imgFallback(this)">
         <figcaption><span data-zh>胶片档案</span><span data-en>Roll archive</span></figcaption>
       </figure>
     </div>
   </section>
 
+  <section id="pro">
+    <h2><span data-zh>一卷 Pro</span><span data-en>Rollbook Pro</span></h2>
+    <p class="h2note"><span data-zh>2.11.1 专业版权益预览 · 一次买断，无订阅。</span><span data-en>Pro in 2.11.1 · One-time purchase, no subscription.</span></p>
+
+    <div class="table-scroll"><table>
+      <thead><tr><th scope="col"><span data-zh>功能</span><span data-en>Feature</span></th><th scope="col"><span data-zh>免费版</span><span data-en>Free</span></th><th scope="col">Pro</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><span data-zh>区域测光</span><span data-en>Area metering</span></th><td><span data-zh>需升级 Pro</span><span data-en>Requires Pro</span></td><td><span data-zh>已包含</span><span data-en>Included</span></td></tr>
+        <tr><th scope="row"><span data-zh>一卷片刻</span><span data-en>Rollbook Moments</span></th><td><span data-zh>需升级 Pro</span><span data-en>Requires Pro</span></td><td><span data-zh>已包含</span><span data-en>Included</span></td></tr>
+        <tr><th scope="row"><span data-zh>自定义配方</span><span data-en>Custom recipes</span></th><td><span data-zh>五类合计 5 条</span><span data-en>5 total across all five types</span></td><td><span data-zh>无限</span><span data-en>Unlimited</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="prose">
+      <p data-zh>平均测光、点测光与精准点测、ND 与倒易律、数字负片、胶片档案与拍摄记录、五种工艺计时、库存、照片和备份不属于这三项 Pro 限制。免费配方额度是五类工艺<strong>合计 5 条</strong>，不是每类 5 条。</p>
+      <p data-en>Average, spot and precision spot metering, ND and reciprocity tools, negative conversion, archives and shooting logs, five-process timers, inventory, photos and backup are outside these three Pro restrictions. The free recipe quota is <strong>5 in total</strong>, not 5 per process.</p>
+      <p data-zh><strong>历史配方保留。</strong>已有配方始终可以查看、使用和编辑，不因未购买 Pro 而删除。达到免费额度后，新增、复制或从回收站恢复为活动配方受额度限制；备份导入保留历史数据。</p>
+      <p data-en><strong>Existing recipes are retained.</strong> You can continue to view, use and edit them without Pro. Once the free quota is reached, creating, copying or restoring an active recipe from Trash is limited; backup import preserves historical data.</p>
+      <p data-zh>Pro 通过 Apple App 内购买一次永久解锁，无订阅；已购买用户也可使用后续新增的 Pro 功能。价格以你所在 App Store 地区的 App 内购买页面为准，可使用“恢复购买”核验既有权益。</p>
+      <p data-en>Pro is a permanent, non-consumable Apple in-app purchase with no subscription. Future additions to Pro are also included for existing purchasers. Pricing is shown in the app for your App Store region. Use Restore Purchases to verify an existing purchase.</p>
+    </div>
+  </section>
+
   <section id="faq">
     <h2><span data-zh>常见问题</span><span data-en>FAQ</span></h2>
-    <p class="h2note"><span data-zh>没有找到答案，欢迎直接来信。</span><span data-en>Not covered here? Just write to us.</span></p>
-
-    <details>
-      <summary><span data-zh>支持哪些冲洗工艺？</span><span data-en>Which chemistries are supported?</span></summary>
-      <div class="body">
-        <p data-zh>黑白负片、黑白反转、C-41、E-6、ECN-2 五种。每种工艺有各自的标准步骤序列，不是同一个计时器换个名字。反转工艺会区分首显与二显、漂白、清除浴与化学反转等独立步骤。</p>
-        <p data-en>Five: B&amp;W negative, B&amp;W reversal, C-41, E-6 and ECN-2. Each has its own standard step sequence rather than a single renamed timer. Reversal distinguishes first and second developer, bleach, clearing bath and chemical reversal as separate steps.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><span data-zh>计时提醒在锁屏或后台会响吗？</span><span data-en>Do alerts fire when the screen is locked?</span></summary>
-      <div class="body">
-        <p data-zh>会。一卷同时使用系统闹钟与本地通知两条提醒路径，步骤结束前会逐秒提示。请在系统设置里允许通知与提醒，否则只能靠 App 在前台时的声音。</p>
-        <p data-en>Yes. Rollbook uses both system alarms and local notifications, and counts down the final seconds before a step ends. Please allow notifications and alerts in system settings; otherwise reminders only sound while the app is in the foreground.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><span data-zh>药水的估算剩余是怎么算的？</span><span data-en>How is estimated remaining volume calculated?</span></summary>
-      <div class="body">
-        <p data-zh>估算剩余 = 包装总量 − 已记录的用量 − 手动校准的消耗量。用量来自每次冲洗按批次扣减的流水，配方能算出用量时自动填写，也可以自己改成实际用量。</p>
-        <p data-zh>如果某个库存项没有填写包装容量，或者单位无法换算，就不会显示估算剩余——一卷不会用猜测填补空白。</p>
-        <p data-en>Estimated remaining = package total − recorded usage − manual calibration. Usage comes from the per-batch ledger written by each processing session; it is filled automatically where the recipe allows it to be calculated, and can be corrected to the actual amount.</p>
-        <p data-en>If a stock item has no package volume recorded, or its unit cannot be converted, no estimate is shown — Rollbook will not fill the gap with a guess.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><span data-zh>配方从哪里来？可以自己建吗？</span><span data-en>Where do recipes come from? Can I add my own?</span></summary>
-      <div class="body">
-        <p data-zh>配方分三档来源：原厂说明书配方、参考配方、以及你自建的配方。内置资料整理自厂商公开说明书，界面上会标注来源。你可以随时新建自己的配方，系统预置资料不会被改动。</p>
-        <p data-en>Recipes come in three tiers: manufacturer datasheet recipes, reference recipes and your own. Bundled data is compiled from published manufacturer documentation and its source is labelled in the app. You can create your own recipes at any time; bundled reference data is never modified.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><span data-zh>怎么备份和恢复？</span><span data-en>How do backup and restore work?</span></summary>
-      <div class="body">
-        <p data-zh>一卷可以导出一份完整备份文件（含结构化数据与原图），保存到你自己选定的位置，之后可以从这个文件完整恢复。此外可以选择开启 iCloud 备份，数据存放在你自己的 iCloud 私有区域。两种方式都不经过我们的服务器。</p>
-        <p data-en>Rollbook exports a complete backup file including structured data and original photographs, saved wherever you choose, and can restore fully from that file. You may also enable an optional iCloud archive stored in your own private iCloud container. Neither path passes through our servers.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><span data-zh>隐私档案是什么？</span><span data-en>What are private archives?</span></summary>
-      <div class="body">
-        <p data-zh>可以把某些档案标记为隐私档案，访问前需要通过设备身份验证（Face ID / Touch ID / 密码）。隐私档案不会出现在普通浏览与统计中。</p>
-        <p data-en>Selected archives can be marked private and require device authentication (Face ID / Touch ID / passcode) before they can be opened. Private archives do not appear in ordinary browsing or statistics.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><span data-zh>支持哪些画幅？</span><span data-en>Which formats are supported?</span></summary>
-      <div class="body">
-        <p data-zh>135、120，以及 4×5 与 8×10 页片。</p>
-        <p data-en>135, 120, and 4x5 / 8x10 sheet film.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><span data-zh>需要注册账号吗？收费吗？</span><span data-en>Do I need an account?</span></summary>
-      <div class="body">
-        <p data-zh>不需要注册账号，打开就能用。App 内不含广告与用户追踪。</p>
-        <p data-en>No account is required — the app works as soon as you open it. There are no ads and no tracking.</p>
-      </div>
-    </details>
+    <p class="h2note"><span data-zh>以 2.11.1 预告说明为主；版本差异另行标注。</span><span data-en>Answers describe the upcoming 2.11.1 unless a version difference is noted.</span></p>
+<details><summary><span data-zh>现在能下载 2.11.1 吗？</span><span data-en>Can I download 2.11.1 now?</span></summary><div class="body"><p data-zh>还不能。2.11.1 / Build221 即将推出，目前处于提交审核前准备。上方按钮通往 App Store 当前线上版本；截至 2026-10-11，中国区为 1.2.1。测光、数字负片和本页 Pro 规则等新版本内容，不代表 1.2.1 已提供。</p><p data-en>Not yet. 2.11.1 / Build221 is being prepared for App Review submission. The button above opens the currently published version; the China store lists 1.2.1 as of October 11, 2026. New-version features such as metering, negative conversion and the Pro rules on this page do not imply availability in 1.2.1.</p></div></details>
+<details><summary><span data-zh>需要什么系统？</span><span data-en>What system is required?</span></summary><div class="body"><p data-zh>即将推出的 2.11.1 最低要求 iOS 26。当前商店版 1.2.1 的中国区页面列为 iOS 17.6 或更高版本；请按准备下载的版本核对系统要求。</p><p data-en>The upcoming 2.11.1 requires iOS 26 or later. The China store lists iOS 17.6 or later for the current 1.2.1 release. Check the requirement for the version you plan to download.</p></div></details>
+<details><summary><span data-zh>需要注册吗？哪些功能收费？</span><span data-en>Do I need an account, and what costs extra?</span></summary><div class="body"><p data-zh>无需注册一卷账号。2.11.1 的 Pro 三项为区域测光、一卷片刻、无限自定义配方，一次买断、无订阅。免费版五类自定义配方合计 5 条。已有配方可继续查看、使用和编辑。购买及恢复由 Apple 处理，详见上方 Pro 说明。</p><p data-en>No Rollbook account is needed. In 2.11.1, Pro unlocks area metering, Rollbook Moments and unlimited custom recipes with a one-time purchase and no subscription. The free tier allows 5 custom recipes across all five process types. Existing recipes remain viewable, usable and editable. Apple handles purchases and restoration; see the Pro details above.</p></div></details>
+<details><summary><span data-zh>支持哪些冲洗工艺与画幅？</span><span data-en>Which processes and film formats are supported?</span></summary><div class="body"><p data-zh>支持黑白负片、黑白反转、C-41、E-6、ECN-2 的分步冲洗计时，以及 135、120、4×5 与 8×10 胶片档案。外部冲扫的胶片也可建档并管理照片。具体药液参数请按适用的原厂资料与实际条件核对。</p><p data-en>Per-step development timers support B&amp;W negative, B&amp;W reversal, C-41, E-6 and ECN-2. Archives support 135, 120, 4×5 and 8×10 film, including lab-processed rolls. Check chemical parameters against the applicable manufacturer instructions and your actual conditions.</p></div></details>
+<details><summary><span data-zh>测光、ND 与倒易律有什么使用边界？</span><span data-en>What should I know about metering, ND and reciprocity?</span></summary><div class="body"><p data-zh>平均、点、精准点测和 Pro 区域测光依赖 iPhone 相机及拍摄条件。ND 与倒易律需结合实际滤镜、胶片和原厂资料适用范围；没有适用资料时，不把推测写成精确补偿。区域测光的取景变化提醒仅供参考，明显换景后应主动重新开始。</p><p data-en>Average, spot, precision spot and Pro area metering depend on the iPhone camera and shooting conditions. ND and reciprocity tools depend on the actual filter, film and supported manufacturer data; missing data is not treated as a precise correction. Area metering framing-change reminders are advisory; restart after a significant change of scene.</p></div></details>
+<details><summary><span data-zh>锁屏或后台能收到计时提醒吗？</span><span data-en>Can I receive timer alerts with the screen locked?</span></summary><div class="body"><p data-zh>支持本地通知与系统闹钟提醒，需要相应授权。是否实际响铃还受系统设置与运行状态影响，不能保证所有情况下送达；正式冲洗前请检查授权并试用提醒。</p><p data-en>Local notifications and system alarm reminders are supported with the relevant permissions. Delivery also depends on system settings and runtime conditions and is not guaranteed in every situation. Check permissions and try the reminder before developing film.</p></div></details>
+<details><summary><span data-zh>怎么备份和恢复？</span><span data-en>How do backup and restore work?</span></summary><div class="body"><p data-zh>本地备份文件未加密，可能含照片与地点，请保存在可信位置。iCloud 备份默认关闭，开启后存入你自己的私有数据库；完整备份含原图和参考照片，轻量备份不含这两类照片。备份不是实时同步，恢复仅支持全新安装或无数据状态。关闭 App 内 iCloud 开关、清空本机或删除 App，不会删除已有云端备份；详见隐私政策。</p><p data-en>Local backup files are not encrypted and may contain photos and locations; store them securely. Optional iCloud backup is off by default and uses your private database. Full backup includes originals and reference photos; lightweight backup excludes both. Backup is not real-time sync, and restore requires a fresh installation or an empty app. Turning off the in-app iCloud switch, clearing local data or deleting the app does not delete existing cloud backups. See the privacy policy.</p></div></details>
+<details><summary><span data-zh>照片导出会带地点吗？</span><span data-en>Can exported photos include location?</span></summary><div class="body"><p data-zh>可能会。原始文件导出保留原文件已有的 EXIF/GPS；“带档案信息导出”会按可用记录在副本中写入拍摄参数与地点，保存到“照片”时也可附带位置。分享前请检查导出内容及系统分享选项；不希望分享地点时，请先使用可核验的元数据移除方式。</p><p data-en>Yes. Original-file export retains existing EXIF/GPS metadata. Export with archive information writes available shooting details and location into a copy and can also attach location when saving to Photos. Check the export and system sharing options before sharing; use a verifiable metadata-removal method if you do not want to disclose location.</p></div></details>
+<details><summary><span data-zh>必须允许相机和定位吗？</span><span data-en>Are camera and location permissions required?</span></summary><div class="body"><p data-zh>相机用于测光和拍摄参考照片，需要你授权。首次记录曝光时才请求定位；已授权时进入测光页可预取单次位置。拒绝定位仍可记录曝光，不会自动取得新的设备地点。手动填写的地点、导入照片的位置及历史地点不会因撤回定位权限而自动删除。</p><p data-en>Camera permission is needed for metering and reference photos. Location is requested when you first record an exposure; if already authorized, a single reading may be prepared when you enter the metering screen. You can record without location permission. Revoking it does not delete manually entered places, imported photo metadata or existing locations.</p></div></details>
+<details><summary><span data-zh>隐私档案等于加密吗？</span><span data-en>Are private archives encrypted?</span></summary><div class="body"><p data-zh>隐私档案通过 Face ID、Touch ID 或设备密码验证后访问。这是 App 内的访问控制，不等于对导出的备份文件加密；包含隐私内容的导出文件仍需单独妥善保管。</p><p data-en>Private archives use Face ID, Touch ID or the device passcode for access control. This does not encrypt exported backup files. Exports containing private content still need to be stored securely.</p></div></details>
   </section>
 
   <section id="privacy" class="prose">
     <h2><span data-zh>隐私政策</span><span data-en>Privacy Policy</span></h2>
-    <p class="h2note"><span data-zh>最后更新：2026 年 8 月</span><span data-en>Last updated: August 2026</span></p>
+    <p class="h2note"><span data-zh>最后更新：2026-10-11</span><span data-en>Last updated: 2026-10-11</span></p>
 
     <div data-zh>
-      <p>一卷 Rollbook（以下简称"一卷"）不会将你的个人信息上传至开发者运营的服务器，也不会出售你的个人信息。本页说明一卷如何处理数据。</p>
+      <h3>1. 适用范围与联系方式</h3>
+      <p>本政策适用于 iOS App“一卷 Rollbook”（以下简称“一卷”）及本网站，覆盖目前的 1.2.1 和即将推出的 2.11.1。部分功能及对应权限仅在支持该功能的版本中提供；相机、定位等数据处理以你实际使用的功能和授权情况为准。一卷由独立开发者 Jovany Liu 开发和维护。对本政策或你的数据有任何疑问，请来信 <a href="mailto:slowscopy@gmail.com">slowscopy@gmail.com</a>。</p>
+      <p>一卷<strong>无需注册账号</strong>，没有用于收集胶片档案或照片的开发者服务器，也不出售个人信息。App 的联网功能包括可选 iCloud 备份、Apple 地图服务与 StoreKit 内购；主动反馈邮件、外部链接及本网站托管的处理方式分别见下文。</p>
 
-      <h3>我们不收集什么</h3>
+      <h3>2. 一卷处理哪些数据</h3>
       <ul>
-        <li>一卷<strong>不要求注册账号</strong>，不收集姓名、邮箱、手机号等身份信息。</li>
-        <li>一卷<strong>不含广告 SDK，不含第三方分析或用户追踪</strong>。</li>
-        <li>一卷<strong>不申请设备定位权限</strong>，不会追踪你的位置。</li>
-        <li>一卷<strong>不申请读取你的整个照片库</strong>。导入照片时通过系统照片选择器进行，你选中的照片才会被读取。</li>
+        <li><strong>你录入的记录</strong>：胶片档案、拍摄与曝光参数、测光结果、冲洗记录、配方、药水与器材库存、备注和评价等。</li>
+        <li><strong>照片</strong>：你通过系统照片选择器导入的成片或负片扫描、记录曝光时拍摄的参考照片、你为器材设置的图片。</li>
+        <li><strong>地点信息</strong>：记录曝光时获取的位置坐标及精度、由坐标解析出的地名，以及你手动选择的地点、导入照片自带的位置信息。</li>
+        <li><strong>App 设置与专业版状态</strong>：语言、配色、提醒等偏好设置；是否已购买专业版，由 Apple 的 StoreKit 在设备上提供。</li>
+      </ul>
+      <p>这些 App 记录以本机处理和保存为主，并按你启用的功能与 Apple 服务交互；不会自动发送给开发者。一卷不要求姓名、邮箱或手机号，不使用广告标识符追踪用户。若你主动发送反馈邮件，开发者会收到你的邮件地址、正文和附件；App 生成的反馈正文包含设备型号、系统版本、App 版本、Build 号和时间，你可在发送前检查或修改。</p>
+
+      <h3>3. 相机与照片</h3>
+      <ul>
+        <li><strong>相机</strong>：经你授权后，只在你使用测光功能时开启，用于实时取景测光、在区域测光时判断取景是否移动，以及在记录曝光时拍摄一张参考照片。测光和图像分析都在设备本机完成。除参考照片外，相机画面不会被保存，也不会上传。</li>
+        <li><strong>读取照片</strong>：导入照片使用系统照片选择器，一卷只能读取你选中的照片，不申请访问整个照片库。负片转正、去色罩等图像处理都在设备本机进行。</li>
+        <li><strong>写入照片库</strong>：只有在你选择把照片保存到“照片”App 时，一卷才会申请“仅添加照片”的权限。</li>
+        <li><strong>导出照片中的信息</strong>：“原始文件导出”保留原文件已有的 EXIF/GPS 信息；“带档案信息导出”会根据可用记录和格式支持，在副本中写入拍摄时间、相机、镜头、光圈、快门、ISO 及 GPS 地点，保存到“照片”时也可设置资产的位置与时间。原始归档文件不因增强导出而被改写。分享前请检查元数据，接收方可能读取其中的地点等信息。</li>
       </ul>
 
-      <h3>数据存放在哪里</h3>
-      <p>你在一卷中创建的所有内容——胶片档案、冲洗记录、配方、器材与药水库存、导入的照片——默认<strong>保存在你自己的设备上</strong>。我们没有服务器，也无法访问这些数据。</p>
-      <p>如果你主动开启 iCloud 备份，数据会存放在<strong>你自己 Apple 账户下的 iCloud 私有区域</strong>，由 Apple 的隐私机制保护。我们同样无法访问。</p>
-      <p>你可以随时导出一份完整备份文件，自行保管或转移到其他设备。</p>
-
-      <h3>一卷申请的系统权限</h3>
+      <h3>4. 位置信息与 Apple 地图服务</h3>
       <ul>
-        <li><strong>提醒与闹钟</strong>：用于在冲洗步骤结束时提醒你，直到你手动停止提醒。</li>
-        <li><strong>Face ID / Touch ID</strong>：仅用于在打开隐私档案前验证是否为设备持有者。验证在设备本机完成，我们不接触任何生物特征数据。</li>
-        <li><strong>写入照片库</strong>：仅在你主动导出照片时，用于把副本保存到你的照片库。</li>
+        <li><strong>何时获取</strong>：在胶片档案中使用测光并记录一次曝光时，一卷会请求“使用 App 期间”的定位权限（第一次会弹出系统询问），授权后尝试获取一次当前位置，并在成功时随该拍摄记录保存。如果你此前已经授权，进入该测光页时一卷也可能先获取一次位置，供记录时使用。</li>
+        <li><strong>不会持续追踪</strong>：一卷只做单次定位，不会在后台获取位置，也不申请“始终”定位权限。</li>
+        <li><strong>Apple 地图服务</strong>：为了显示地名，一卷会把拍摄位置的坐标发给 Apple 地图服务解析地址。你选择地点时输入的搜索内容，以及档案地图的显示，也会用到 Apple 地图服务。这些请求由 Apple 处理，开发者收不到。</li>
+        <li><strong>其他来源</strong>：你也可以手动为档案选择地点；导入的照片如果自带位置信息，也会随照片一起保存。</li>
+        <li><strong>保存在哪里</strong>：地点信息保存在本机，可随相关记录进入你导出的备份文件、你开启的 iCloud 备份，以及含地点元数据的照片导出。</li>
+        <li>你可以拒绝或随时关闭定位权限。拒绝后仍可保存拍摄记录，但不会取得新的设备定位。撤回权限不会自动删除历史地点、手动地点或导入照片已有的位置元数据。</li>
       </ul>
-      <p>以上权限均可拒绝；拒绝后相应功能不可用，其余功能不受影响。</p>
 
-      <h3>关于地点信息</h3>
-      <p>如果你为某份档案填写或在地图上选择了地点，或导入的照片自带位置信息，这些内容会与档案一起保存在本地，用于档案地图等回看功能。一卷不会主动获取你的实时位置，也不会把地点信息发送到任何地方。</p>
+      <h3>5. 本地存储与可选的 iCloud 备份</h3>
+      <p>一卷的数据默认保存在本机的 App 存储空间中。一卷不提供多设备实时同步。</p>
+      <ul>
+        <li><strong>iCloud 备份默认关闭</strong>，需要你在一卷的“设置 &gt; iCloud 备份”中主动开启。开启后，数据保存在你自己 Apple 账户下、一卷专用的 iCloud 私有数据库中，开发者无法访问。</li>
+        <li><strong>备份内容</strong>：
+          <ul>
+            <li>“完整备份”包括档案等资料（含地点信息）、器材自定义图片、胶片照片原图和拍摄参考照片；</li>
+            <li>“轻量备份”只包括资料和器材自定义图片，不上传胶片照片原图和参考照片。</li>
+          </ul>
+        </li>
+        <li>关闭 iCloud 备份会停止之后的上传，但<strong>不会删除</strong>已经存放在 iCloud 中的数据。使用“清空本机数据”也不会删除 iCloud 中的数据。</li>
+        <li>如需删除云端数据，请在 iOS 的 iCloud 储存空间管理中查找一卷，并使用系统提供的删除数据操作；不同系统版本与账户状态的入口可能不同。可参考 <a href="https://support.apple.com/zh-cn/guide/icloud/mm62d92d6b3e/icloud">Apple 关于第三方 App 的 iCloud 数据说明</a>。若没有显示相应入口，请联系 Apple 支持或来信求助，不要把关闭 App 内备份开关当作删除成功。此 App 内备份与 iPhone 的整机 iCloud 备份是不同功能，系统备份请另行管理。</li>
+      </ul>
 
-      <h3>儿童</h3>
-      <p>一卷不面向 13 岁以下儿童，也不会有意收集儿童的个人信息。</p>
+      <h3>6. 备份文件与导出</h3>
+      <ul>
+        <li>你可以在“设置 &gt; 备份与恢复”中导出本地备份文件（.rollbookbackup），保存到你选择的位置。完整备份包含资料和照片原图。</li>
+        <li><strong>备份文件不加密</strong>，里面包含你的记录和地点等信息。请把它保存在可信的位置，分享前请确认接收方。</li>
+        <li>从备份文件恢复，仅支持全新安装或没有数据的状态。</li>
+      </ul>
 
-      <h3>变更</h3>
-      <p>本政策如有更新，会在本页发布并更新日期。</p>
+      <h3>7. App 内购（StoreKit）</h3>
+      <p>一卷专业版通过 Apple 的 App 内购买项目出售。付款、退款、恢复购买和兑换代码都由 Apple 处理。一卷只从 Apple 获取商品信息（名称、价格）和经 Apple 签名验证的购买记录，用来在设备上确认你是否拥有专业版。一卷接触不到银行卡、Apple 账户密码等付款信息，也不会把购买记录发给开发者。</p>
 
-      <h3>联系</h3>
-      <p>如对隐私有任何疑问，请来信 <a href="mailto:slowscopy@gmail.com">slowscopy@gmail.com</a>。</p>
+      <h3>8. 通知、闹钟与生物识别</h3>
+      <ul>
+        <li><strong>通知与闹钟</strong>：只有在你使用冲洗计时等提醒功能时，一卷才会请求通知和系统闹钟权限，用于在步骤结束时提醒你。提醒在设备本机安排，不经过开发者服务器。</li>
+        <li><strong>Face ID / Touch ID / 设备密码</strong>：只在打开隐私档案前用于确认是设备持有人。验证由 iOS 完成，一卷只得到“通过”或“未通过”的结果，拿不到任何生物特征数据。</li>
+      </ul>
+
+      <h3>9. 数据保存期限与删除</h3>
+      <ul>
+        <li>一卷保留本机记录供你使用，直到你执行相应删除操作；设备故障或删除 App 等情况也可能造成丢失。你可以在 App 内删除单条档案、拍摄、冲洗、配方等记录；部分记录会先进入回收站，之后可以永久删除。</li>
+        <li>在“设置 &gt; 备份与恢复”中使用“清空本机数据”，会清除这台设备上的档案、照片、冲洗、库存等数据，不影响 iCloud 中的数据。</li>
+        <li>删除一卷 App 时，iOS 会删除 App 在本机的数据，但不会删除 iCloud 备份、你导出的备份文件，以及已经保存到“照片”或分享出去的照片。</li>
+        <li>iCloud 数据需另行管理；导出的文件及已保存到“照片”的内容需在相应位置删除，并检查其回收站或“最近删除”。已分享给他人的副本不受一卷控制。开发者无法代删你设备和私有 iCloud 中的记录。主动发送给开发者的反馈邮件及附件用于处理支持请求，你可通过上述邮箱请求删除这些通信内容。</li>
+      </ul>
+
+      <h3>10. 如何撤回系统权限</h3>
+      <p>你可以随时在 iPhone 的“设置”中找到“一卷”，关闭相机、定位、照片、通知等权限。定位也可以在“设置 &gt; 隐私与安全性 &gt; 定位服务”中修改，Face ID 授权可以在“设置 &gt; 面容 ID 与密码 &gt; 其他 App”中修改。拒绝权限会限制需要该权限的部分，例如无法取景测光或保存到照片库；拒绝定位仍可记录曝光。设备身份验证属于 App 内访问控制，不等于对导出备份文件加密。</p>
+
+      <h3>11. 第三方服务与数据共享</h3>
+      <ul>
+        <li>一卷<strong>不含广告、统计分析或用户追踪 SDK</strong>，不出售或出租你的数据，也不会为广告目的与他人共享数据。</li>
+        <li>一卷用到的 Apple 服务包括 iCloud（仅在你开启 iCloud 备份时使用）、Apple 地图服务和 App Store 内购，相关数据由 Apple 按照 <a href="https://www.apple.com.cn/legal/privacy/">Apple 隐私政策</a> 处理。</li>
+        <li>一卷使用 ZIPFoundation、libjpeg-turbo、libtiff 等组件在设备上打包备份和处理图像；这些处理不会把图像发送给这些组件的维护者。</li>
+        <li>你在 App 中点开的外部链接（例如厂商资料页面）会在浏览器中打开，此时适用对方网站的隐私政策。</li>
+        <li>本网站托管在 GitHub Pages。按照 <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">GitHub 的说明</a>，访问 GitHub Pages 网站时，访问者的 IP 地址会被记录，并出于安全目的保存。本网站只在你的浏览器中记住语言和深浅色偏好，不使用统计或广告脚本。</li>
+      </ul>
+
+      <h3>12. 儿童隐私</h3>
+      <p>一卷面向胶片摄影用户，并非专为儿童设计。App 不要求注册个人资料，也不进行广告追踪。如果监护人认为儿童通过反馈邮件等方式向开发者提供了个人信息，可联系我们请求协助或删除。</p>
+
+      <h3>13. 政策变更</h3>
+      <p>本政策可能随 App 功能的变化而更新。更新后会在本页发布，并修改顶部的“最后更新”日期。</p>
     </div>
 
     <div data-en>
-      <p>一卷 Rollbook ("Rollbook") does not upload your personal information to developer-operated servers or sell your personal information. This page explains how Rollbook handles data.</p>
+      <h3>1. Scope and contact</h3>
+      <p>This policy applies to the iOS app 一卷 Rollbook (“Rollbook”) and this website, including the current 1.2.1 and upcoming 2.11.1. Some features and permissions are available only in versions that support them. Camera, location and other processing depend on the features you use and the permissions you grant. Rollbook is developed and maintained by independent developer Jovany Liu. For any question about this policy or your data, write to <a href="mailto:slowscopy@gmail.com">slowscopy@gmail.com</a>.</p>
+      <p>Rollbook <strong>requires no account</strong> and has no developer-operated server for collecting film archives or photos. We do not sell personal information. Network features include optional iCloud backup, Apple Maps services and StoreKit purchases. Voluntary support email, external links and this website’s hosting are described separately below.</p>
 
-      <h3>What we do not collect</h3>
+      <h3>2. Data Rollbook processes</h3>
       <ul>
-        <li>Rollbook <strong>requires no account</strong> and collects no name, email address or phone number.</li>
-        <li>Rollbook contains <strong>no advertising SDK, no third-party analytics and no user tracking</strong>.</li>
-        <li>Rollbook <strong>does not request device location permission</strong> and does not track your whereabouts.</li>
-        <li>Rollbook <strong>does not request read access to your photo library</strong>. Photos are imported through the system photo picker, so only the images you choose are read.</li>
+        <li><strong>Your records</strong>: film archives, shot and exposure settings, metering results, processing sessions, recipes, chemical and gear inventory, notes and ratings.</li>
+        <li><strong>Photos</strong>: scans of finished frames or negatives you import through the system photo picker, reference photos taken when you record an exposure, and images you set for your gear.</li>
+        <li><strong>Location</strong>: coordinates and their accuracy captured when you record an exposure, place names resolved from those coordinates, places you choose manually, and location metadata carried by imported photos.</li>
+        <li><strong>App settings and Pro status</strong>: preferences such as language, color and reminders. Whether you own Rollbook Pro is provided on your device by Apple’s StoreKit.</li>
+      </ul>
+      <p>These app records are primarily processed and stored on your device, with Apple services used as described below. They are not automatically sent to the developer. Rollbook does not require your name, email address or phone number and does not use advertising identifiers to track you. If you voluntarily email support, the developer receives your email address, message and attachments. Feedback text prepared by the app includes device model, OS version, app version, build number and time; you can review or edit it before sending.</p>
+
+      <h3>3. Camera and photos</h3>
+      <ul>
+        <li><strong>Camera</strong>: used with your permission only while you use the light meter. It is used for live metering, for checking whether the framing has moved during area metering, and for taking one reference photo when you record an exposure. Metering and image analysis happen on your device. Apart from reference photos, camera frames are neither saved nor uploaded.</li>
+        <li><strong>Reading photos</strong>: imports use the system photo picker, so Rollbook can read only the photos you select. It does not request access to your whole photo library. Negative conversion, mask removal and other image processing happen on your device.</li>
+        <li><strong>Adding to your photo library</strong>: Rollbook requests “add photos only” access only when you choose to save photos to the Photos app.</li>
+        <li><strong>Information in exported photos</strong>: “Original File” export retains existing EXIF/GPS metadata. “Export with Archive Information” writes available capture time, camera, lens, aperture, shutter speed, ISO and GPS location into a copy where the format supports it. Saving that export to Photos can also set the asset’s location and time. This does not modify the archived original. Check metadata before sharing: recipients may be able to read location and other details.</li>
       </ul>
 
-      <h3>Where your data lives</h3>
-      <p>Everything you create in Rollbook — archives, processing records, recipes, gear and chemical inventory, imported photographs — is <strong>stored on your own device</strong> by default. We operate no servers and cannot access this data.</p>
-      <p>If you choose to enable the iCloud archive, data is stored in <strong>your own private iCloud container</strong> under your Apple Account, protected by Apple's privacy mechanisms. We cannot access it either.</p>
-      <p>You can export a complete backup file at any time and keep or move it yourself.</p>
-
-      <h3>System permissions Rollbook requests</h3>
+      <h3>4. Location and Apple Maps services</h3>
       <ul>
-        <li><strong>Alerts and alarms</strong> — to remind you when a processing step ends, until you stop the reminder.</li>
-        <li><strong>Face ID / Touch ID</strong> — only to verify the device owner before opening a private archive. Verification happens on-device; we never handle biometric data.</li>
-        <li><strong>Add to photo library</strong> — only when you export photographs, to save copies into your library.</li>
+        <li><strong>When location is used</strong>: when you use the light meter inside a film archive and record an exposure, Rollbook asks for “While Using the App” location permission (the system prompts you the first time). After permission is granted, it attempts a single location reading and saves a successful result with that shot record. If you have already granted permission, Rollbook may also read your location once when you open that metering screen, so it is ready when you record.</li>
+        <li><strong>No continuous tracking</strong>: Rollbook only takes single location readings. It never reads your location in the background and does not request “Always” permission.</li>
+        <li><strong>Apple Maps services</strong>: to show place names, Rollbook sends a shot’s coordinates to Apple Maps services to look up the address. Searches you type when choosing a place, and the archive map display, also use Apple Maps services. Apple handles these requests; the developer does not receive them.</li>
+        <li><strong>Other sources</strong>: you can also choose a place for an archive manually. If an imported photo carries location metadata, it is saved with the photo.</li>
+        <li><strong>Where location is stored</strong>: on your device. It can also be included with the relevant records in exported backup files, enabled iCloud backups and photo exports that contain location metadata.</li>
+        <li>You can decline or revoke location permission at any time. You can still save shot records without a new device location. Revoking permission does not automatically delete previous locations, manually entered places or location metadata in imported photos.</li>
       </ul>
-      <p>All of these can be declined; the related feature becomes unavailable while everything else continues to work.</p>
 
-      <h3>Location information</h3>
-      <p>If you enter or select a place for an archive, or an imported photograph carries location metadata, that information is stored locally with the archive and used for features such as the archive map. Rollbook does not request your live location and does not transmit place information anywhere.</p>
+      <h3>5. On-device storage and optional iCloud backup</h3>
+      <p>Rollbook stores its data in the app’s storage on your device by default. It does not offer real-time multi-device sync.</p>
+      <ul>
+        <li><strong>iCloud Backup is off by default.</strong> You turn it on yourself under Settings &gt; iCloud Backup in Rollbook. Once on, data is kept in a private iCloud database dedicated to Rollbook under your own Apple Account, which the developer cannot access.</li>
+        <li><strong>What is backed up</strong>:
+          <ul>
+            <li>“Full Backup” includes your records (including location), custom gear images, original film photos and shot reference photos.</li>
+            <li>“Lightweight Backup” includes only your records and custom gear images. Original film photos and reference photos are not uploaded.</li>
+          </ul>
+        </li>
+        <li>Turning iCloud Backup off stops future uploads but <strong>does not delete</strong> data already in iCloud. “Clear Data on This Device” does not delete iCloud data either.</li>
+        <li>To delete cloud data, look for Rollbook in iOS iCloud storage management and use the deletion control provided by the system. Availability and menu names can vary with iOS and account state. See <a href="https://support.apple.com/en-us/guide/icloud/mm62d92d6b3e/icloud">Apple’s guidance on third-party app data in iCloud</a>. If no entry is shown, contact Apple Support or email us for help; switching off backup in Rollbook is not confirmation of deletion. This in-app backup is separate from iPhone device backups in iCloud, which you manage separately.</li>
+      </ul>
 
-      <h3>Children</h3>
-      <p>Rollbook is not directed at children under 13 and does not knowingly collect personal information from children.</p>
+      <h3>6. Backup files and exports</h3>
+      <ul>
+        <li>Under Settings &gt; Backup &amp; Restore you can export a local backup file (.rollbookbackup) and save it wherever you choose. A full backup includes your records and original photos.</li>
+        <li><strong>Backup files are not encrypted</strong> and contain your records, including location. Keep them somewhere you trust, and check who you are sending them to before you share them.</li>
+        <li>A backup file can be restored only on a fresh installation or when the app has no data.</li>
+      </ul>
 
-      <h3>Changes</h3>
-      <p>Any update to this policy will be posted on this page with a revised date.</p>
+      <h3>7. In-app purchase (StoreKit)</h3>
+      <p>Rollbook Pro is sold as an Apple in-app purchase. Apple handles payment, refunds, restoring purchases and redeeming codes. Rollbook receives only product information (name and price) and Apple-signed, verified purchase records from Apple, which it uses on your device to confirm whether you own Rollbook Pro. Rollbook never has access to your bank card details or Apple Account password, and it does not send purchase records to the developer.</p>
 
-      <h3>Contact</h3>
-      <p>For any privacy question, write to <a href="mailto:slowscopy@gmail.com">slowscopy@gmail.com</a>.</p>
+      <h3>8. Notifications, alarms and biometrics</h3>
+      <ul>
+        <li><strong>Notifications and alarms</strong>: Rollbook asks for notification and system alarm permission only when you use reminders such as the processing timer, so it can alert you when a step ends. Reminders are scheduled on your device and never pass through a developer server.</li>
+        <li><strong>Face ID / Touch ID / device passcode</strong>: used only to confirm you are the device owner before a private archive opens. iOS performs the check, and Rollbook receives only a pass or fail result. It never has access to biometric data.</li>
+      </ul>
+
+      <h3>9. How long data is kept and how to delete it</h3>
+      <ul>
+        <li>Rollbook retains local records for your use until you delete them; device failure or removal of the app can also cause data loss. In the app you can delete individual archives, shots, processing sessions, recipes and other records. Some go to the Trash first, from where you can delete them permanently.</li>
+        <li>“Clear Data on This Device” under Settings &gt; Backup &amp; Restore removes archives, photos, processing and inventory data from this device. It does not affect data in iCloud.</li>
+        <li>When you delete the Rollbook app, iOS removes the app’s data from your device. Your iCloud backup, any backup files you exported, and photos you saved to Photos or shared are not removed.</li>
+        <li>Manage iCloud data separately. Delete exported files and saved Photos content at their respective locations, including any Trash or Recently Deleted area. Copies shared with others are outside Rollbook’s control. The developer cannot delete records on your device or in your private iCloud database for you. Support emails and attachments you send are used to handle your request; you may request deletion of those communications through the email address above.</li>
+      </ul>
+
+      <h3>10. Withdrawing system permissions</h3>
+      <p>You can turn off camera, location, photos, notifications and other permissions at any time under Rollbook in the iPhone Settings app. Location can also be changed under Settings &gt; Privacy &amp; Security &gt; Location Services, and Face ID access under Settings &gt; Face ID &amp; Passcode &gt; Other Apps. Declining a permission limits the part that requires it, such as camera metering or saving to Photos; recording an exposure still works without location permission. Device authentication is in-app access control and does not encrypt exported backup files.</p>
+
+      <h3>11. Third-party services and data sharing</h3>
+      <ul>
+        <li>Rollbook contains <strong>no advertising, analytics or user-tracking SDKs</strong>. It does not sell or rent your data, and does not share it with anyone for advertising.</li>
+        <li>The Apple services Rollbook uses are iCloud (only when you turn on iCloud Backup), Apple Maps services and App Store in-app purchases. Apple handles the related data under the <a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>.</li>
+        <li>Components such as ZIPFoundation, libjpeg-turbo and libtiff package backups and process images on your device. These operations do not send images to the component maintainers.</li>
+        <li>External links you open in the app, such as manufacturer data sheets, open in your browser and are covered by those websites’ own privacy policies.</li>
+        <li>This website is hosted on GitHub Pages. According to <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">GitHub’s documentation</a>, when a GitHub Pages site is visited, the visitor’s IP address is logged and stored for security purposes. This website only remembers your language and light or dark preference in your browser, and uses no analytics or advertising scripts.</li>
+      </ul>
+
+      <h3>12. Children’s privacy</h3>
+      <p>Rollbook is designed for film photography users, not specifically for children. The app does not require a personal profile or use advertising tracking. If a guardian believes a child has sent personal information to the developer, for example by support email, please contact us for assistance or deletion.</p>
+
+      <h3>13. Changes to this policy</h3>
+      <p>This policy may be updated as the app’s features change. Updates will be posted on this page, and the “Last updated” date at the top will be revised.</p>
     </div>
   </section>
 
   <section id="releases">
     <h2><span data-zh>更新记录</span><span data-en>Release Notes</span></h2>
-    <p class="h2note"><span data-zh>每次发布都会记在这里。</span><span data-en>Every release is recorded here.</span></p>
+    <p class="h2note"><span data-zh>已发布版本与即将推出的版本分别标注。</span><span data-en>Published releases and upcoming versions are labelled separately.</span></p>
 
-    <!-- 新版本加在最上面 -->
+    <div class="rel upcoming">
+      <div class="ver">2.11.1 / Build221 · <span data-zh>即将推出</span><span data-en>Coming soon</span></div>
+      <div class="date"><span data-zh>预告更新：2026-10-11 · 提交审核前准备，尚未上架</span><span data-en>Preview updated: 2026-10-11 · Preparing for App Review submission, not yet released</span></div>
+      <ul>
+        <li data-zh>相较 1.2.1：加入平均、点、精准点及 Pro 区域测光，结合 ND、倒易律与逐次拍摄记录。</li>
+        <li data-en>Since 1.2.1: average, spot, precision spot and Pro area metering, with ND, reciprocity tools and per-shot records.</li>
+        <li data-zh>数字负片反相、去色罩与成片外观管理，串联胶片档案、参考照片与最终成片。</li>
+        <li data-en>Negative inversion, film-mask removal and saved photo appearances, connecting archives, reference photos and finished frames.</li>
+        <li data-zh>完整保留五种工艺分步计时、配方、药水与胶片/器材库存、照片及完整/轻量备份。</li>
+        <li data-en>Continues five-process development timers, recipes, chemical/film/gear inventory, photo management and full/lightweight backup.</li>
+        <li data-zh>Pro 一次买断无订阅：区域测光、一卷片刻、无限自定义配方；免费版五类合计 5 条，历史配方保留。</li>
+        <li data-en>One-time Pro purchase, no subscription: area metering, Rollbook Moments and unlimited custom recipes. Free tier: 5 total across five types; historical recipes are retained.</li>
+        <li data-zh>本次 2.11.1 修订包括恢复购买状态反馈与商品价格刷新处理；最低系统要求为 iOS 26。</li>
+        <li data-en>The 2.11.1 revision includes purchase-restoration feedback and product-price refresh handling. Requires iOS 26 or later.</li>
+      </ul>
+    </div>
+
     <div class="rel">
       <div class="ver">1.2.1</div>
       <div class="date">2026-09</div>
@@ -514,6 +588,10 @@ function imgFallback(img){
     theme.setAttribute('title', label);
   }
   function set(l){
+    if(l!=='zh'&&l!=='en') l='zh';
+    var title=document.querySelector('title'), description=document.querySelector('meta[name=description]');
+    document.title=title.getAttribute('data-title-'+l);
+    description.setAttribute('content',description.getAttribute('data-description-'+l));
     root.setAttribute('data-lang',l);
     root.setAttribute('lang', l==='zh' ? 'zh-Hans' : 'en');
     zh.setAttribute('aria-pressed', l==='zh');
@@ -533,7 +611,7 @@ function imgFallback(img){
   try{ saved=localStorage.getItem('rb-lang'); }catch(e){}
   if(saved){ set(saved); }
   else if((navigator.language||'').toLowerCase().indexOf('zh')!==0){ set('en'); }
-  else{ updateThemeControl(); }
+  else{ set('zh'); }
   if(window.matchMedia){
     var scheme=window.matchMedia('(prefers-color-scheme: dark)');
     if(scheme.addEventListener) scheme.addEventListener('change',function(){
