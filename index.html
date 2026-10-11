@@ -104,16 +104,19 @@ try{
     color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; margin-bottom:9px;
   }
 
-  /* screenshots */
-  .shots{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
-  .shot{margin:0}
-  .shot img{width:100%; border-radius:12px; border:1px solid var(--line); display:block; background:var(--surface)}
-  .shot .ph{
-    aspect-ratio:9/19.5; border:1px dashed var(--line); border-radius:12px;
-    display:grid; place-items:center; color:var(--ink-3); font-size:12.5px; text-align:center; padding:14px;
-    background:var(--surface);
-  }
-  .shot figcaption{font-size:13px; color:var(--ink-3); margin-top:8px}
+  /* Build221 screenshot gallery: horizontal, scrollable, accessible */
+  .shots{display:flex;gap:17px;overflow-x:auto;scroll-snap-type:x mandatory;
+    overscroll-behavior-x:contain;padding:4px 2px 16px;margin:0 -2px;
+    scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+  .shot{margin:0;flex:0 0 clamp(196px,31%,244px);scroll-snap-align:start;min-width:0}
+  .shot a{display:block;border-radius:13px;overflow:hidden;outline-offset:4px;
+    background:var(--surface);border:1px solid var(--line);transition:transform .16s ease}
+  .shot a:hover{transform:translateY(-2px)}
+  .shot a:focus-visible{outline:2px solid var(--accent)}
+  .shot img{display:block;width:100%;height:auto;aspect-ratio:941/2048;object-fit:contain;
+    background:var(--surface)}
+  .shot figcaption{font-size:13px;color:var(--ink-3);margin-top:9px;line-height:1.5}
+  @media(max-width:480px){.shots{gap:12px}.shot{flex-basis:min(69vw,246px)}}
 
   /* faq */
   details{border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); margin-bottom:9px; overflow:hidden}
@@ -149,7 +152,7 @@ try{
   thead{background:var(--accent-soft)}
   tbody th{font-weight:600}
   .upcoming{border-color:var(--accent)}
-  @media(max-width:480px){.bar{padding:16px 22px;gap:10px}.brand small{font-size:11px}.header-actions{gap:5px}.lang button{padding:5px 8px}h1{font-size:27px}.grid{grid-template-columns:1fr}.shots{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}th,td{padding:10px 7px}.hero{padding-top:36px}}
+  @media(max-width:480px){.bar{padding:16px 22px;gap:10px}.brand small{font-size:11px}.header-actions{gap:5px}.lang button{padding:5px 8px}h1{font-size:27px}.grid{grid-template-columns:1fr}th,td{padding:10px 7px}.hero{padding-top:36px}}
 </style>
 </head>
 <body>
@@ -207,8 +210,8 @@ try{
       <p class="sub">Develop at home or use a lab. From your first meter reading to revisiting your photographs, Rollbook keeps the journey together.</p>
     </div>
     <div class="release-status" id="availability">
-      <p data-zh><strong>2.11.1 / Build221：即将推出，正在进行提交审核前准备，尚未在 App Store 上架。</strong>下方功能与 Pro 说明介绍此版本；不代表当前商店版已包含全部功能。</p>
-      <p data-en><strong>2.11.1 / Build221 is coming soon and is being prepared for App Review submission. It is not yet available on the App Store.</strong> The features and Pro details below describe this version; some are not in the current store release.</p>
+      <p data-zh><strong>2.11.1 / Build221：已提交 App Store 审核，尚未正式上架。</strong>下方功能与 Pro 说明介绍此版本；不代表当前商店版已包含全部功能。</p>
+      <p data-en><strong>2.11.1 / Build221 has been submitted for App Review and is not yet available on the App Store.</strong> The features and Pro details below describe this version; some are not in the current store release.</p>
       <a class="download" href="https://apps.apple.com/cn/app/%E4%B8%80%E5%8D%B7-rollbook/id6786322386"><span data-zh>在 App Store 查看当前版本</span><span data-en>View the current App Store version</span></a>
       <p class="version-note" data-zh>截至 2026-10-11，中国区 App Store 当前为 1.2.1（iOS 17.6 或更高版本）。即将推出的 2.11.1 要求 <strong>iOS 26 或更高版本</strong>；实际可下载版本以你所在地区的商店页面为准。</p>
       <p class="version-note" data-en>As of October 11, 2026, the China App Store lists 1.2.1 (iOS 17.6 or later). The upcoming 2.11.1 requires <strong>iOS 26 or later</strong>. Check your local store page for the version available to download.</p>
@@ -232,23 +235,49 @@ try{
 
   <section id="screens">
     <h2><span data-zh>界面</span><span data-en>Screens</span></h2>
-    <p class="h2note"><span data-zh>保留自官网的旧版界面参考，拍摄版本待核实；不是 Build221 截图。Build221 真实界面图待补充。</span><span data-en>Existing website images, retained as older interface references. Their capture version is unverified; these are not presented as Build221 screenshots. Verified Build221 images will be added when available.</span></p>
-    <div class="shots">
+    <p class="h2note"><span data-zh>2.11.1 / Build221 实际界面与宣传素材。中文、英文分别展示对应版本；区域测光属于 Pro。</span><span data-en>Actual 2.11.1 / Build221 interface and promotional screenshots. Each language shows its matching set. Area Metering requires Pro.</span></p>
+    <div class="shots" aria-label="Rollbook screenshots">
       <figure class="shot">
-        <img src="01.jpg" alt="冲洗计时 / Development timer — 旧版参考 / older interface" loading="lazy" data-base="01" onerror="imgFallback(this)">
-        <figcaption><span data-zh>冲洗计时运行中</span><span data-en>Processing timer running</span></figcaption>
+        <a class="shot-link" target="_blank" rel="noopener" href="#" aria-label="Open screenshot">
+          <img loading="lazy" decoding="async" width="941" height="2048" data-src-zh="assets/rollbook-2.11.1/zh/01-overview.png" data-src-en="assets/rollbook-2.11.1/en/01-overview.png" data-alt-zh="一卷首页" data-alt-en="Rollbook overview" alt="">
+        </a>
+        <figcaption><span data-zh>一卷首页</span><span data-en>Rollbook overview</span></figcaption>
       </figure>
       <figure class="shot">
-        <img src="02.jpg" alt="药水库存 / Chemical inventory — 旧版参考 / older interface" loading="lazy" data-base="02" onerror="imgFallback(this)">
-        <figcaption><span data-zh>药水库存与估算剩余</span><span data-en>Chemical stock &amp; estimated remaining</span></figcaption>
+        <a class="shot-link" target="_blank" rel="noopener" href="#" aria-label="Open screenshot">
+          <img loading="lazy" decoding="async" width="941" height="2048" data-src-zh="assets/rollbook-2.11.1/zh/02-metering.png" data-src-en="assets/rollbook-2.11.1/en/02-metering.png" data-alt-zh="专业测光（区域测光需 Pro）" data-alt-en="Metering (Area Metering requires Pro)" alt="">
+        </a>
+        <figcaption><span data-zh>专业测光（区域测光需 Pro）</span><span data-en>Metering (Area Metering requires Pro)</span></figcaption>
       </figure>
       <figure class="shot">
-        <img src="03.jpg" alt="配方参数 / Recipe parameters — 旧版参考 / older interface" loading="lazy" data-base="03" onerror="imgFallback(this)">
-        <figcaption><span data-zh>配方分步参数</span><span data-en>Per-step recipe parameters</span></figcaption>
+        <a class="shot-link" target="_blank" rel="noopener" href="#" aria-label="Open screenshot">
+          <img loading="lazy" decoding="async" width="941" height="2048" data-src-zh="assets/rollbook-2.11.1/zh/03-archive.png" data-src-en="assets/rollbook-2.11.1/en/03-archive.png" data-alt-zh="胶片档案与拍摄记录" data-alt-en="Film archives and shooting records" alt="">
+        </a>
+        <figcaption><span data-zh>胶片档案与拍摄记录</span><span data-en>Film archives and shooting records</span></figcaption>
       </figure>
       <figure class="shot">
-        <img src="04.jpg" alt="胶片档案 / Film archive — 旧版参考 / older interface" loading="lazy" data-base="04" onerror="imgFallback(this)">
-        <figcaption><span data-zh>胶片档案</span><span data-en>Roll archive</span></figcaption>
+        <a class="shot-link" target="_blank" rel="noopener" href="#" aria-label="Open screenshot">
+          <img loading="lazy" decoding="async" width="941" height="2048" data-src-zh="assets/rollbook-2.11.1/zh/04-development.png" data-src-en="assets/rollbook-2.11.1/en/04-development.png" data-alt-zh="分步冲洗计时" data-alt-en="Step-by-step development timer" alt="">
+        </a>
+        <figcaption><span data-zh>分步冲洗计时</span><span data-en>Step-by-step development timer</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="shot-link" target="_blank" rel="noopener" href="#" aria-label="Open screenshot">
+          <img loading="lazy" decoding="async" width="941" height="2048" data-src-zh="assets/rollbook-2.11.1/zh/05-inventory.png" data-src-en="assets/rollbook-2.11.1/en/05-inventory.png" data-alt-zh="胶卷、药水与器材库存" data-alt-en="Film, chemical and gear inventory" alt="">
+        </a>
+        <figcaption><span data-zh>胶卷、药水与器材库存</span><span data-en>Film, chemical and gear inventory</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="shot-link" target="_blank" rel="noopener" href="#" aria-label="Open screenshot">
+          <img loading="lazy" decoding="async" width="941" height="2048" data-src-zh="assets/rollbook-2.11.1/zh/06-statistics.png" data-src-en="assets/rollbook-2.11.1/en/06-statistics.png" data-alt-zh="胶片摄影数据统计" data-alt-en="Film photography statistics" alt="">
+        </a>
+        <figcaption><span data-zh>胶片摄影数据统计</span><span data-en>Film photography statistics</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="shot-link" target="_blank" rel="noopener" href="#" aria-label="Open screenshot">
+          <img loading="lazy" decoding="async" width="941" height="2048" data-src-zh="assets/rollbook-2.11.1/zh/07-negative.png" data-src-en="assets/rollbook-2.11.1/en/07-negative.png" data-alt-zh="数字负片与调整工具" data-alt-en="Digital negative and adjustment tools" alt="">
+        </a>
+        <figcaption><span data-zh>数字负片与调整工具</span><span data-en>Digital negative and adjustment tools</span></figcaption>
       </figure>
     </div>
   </section>
@@ -278,7 +307,7 @@ try{
   <section id="faq">
     <h2><span data-zh>常见问题</span><span data-en>FAQ</span></h2>
     <p class="h2note"><span data-zh>以 2.11.1 预告说明为主；版本差异另行标注。</span><span data-en>Answers describe the upcoming 2.11.1 unless a version difference is noted.</span></p>
-<details><summary><span data-zh>现在能下载 2.11.1 吗？</span><span data-en>Can I download 2.11.1 now?</span></summary><div class="body"><p data-zh>还不能。2.11.1 / Build221 即将推出，目前处于提交审核前准备。上方按钮通往 App Store 当前线上版本；截至 2026-10-11，中国区为 1.2.1。测光、数字负片和本页 Pro 规则等新版本内容，不代表 1.2.1 已提供。</p><p data-en>Not yet. 2.11.1 / Build221 is being prepared for App Review submission. The button above opens the currently published version; the China store lists 1.2.1 as of October 11, 2026. New-version features such as metering, negative conversion and the Pro rules on this page do not imply availability in 1.2.1.</p></div></details>
+<details><summary><span data-zh>现在能下载 2.11.1 吗？</span><span data-en>Can I download 2.11.1 now?</span></summary><div class="body"><p data-zh>还不能。2.11.1 / Build221 即将推出，目前已提交审核，尚未正式上架。上方按钮通往 App Store 当前线上版本；截至 2026-10-11，中国区为 1.2.1。测光、数字负片和本页 Pro 规则等新版本内容，不代表 1.2.1 已提供。</p><p data-en>Not yet. 2.11.1 / Build221 has been submitted for App Review. The button above opens the currently published version; the China store lists 1.2.1 as of October 11, 2026. New-version features such as metering, negative conversion and the Pro rules on this page do not imply availability in 1.2.1.</p></div></details>
 <details><summary><span data-zh>需要什么系统？</span><span data-en>What system is required?</span></summary><div class="body"><p data-zh>即将推出的 2.11.1 最低要求 iOS 26。当前商店版 1.2.1 的中国区页面列为 iOS 17.6 或更高版本；请按准备下载的版本核对系统要求。</p><p data-en>The upcoming 2.11.1 requires iOS 26 or later. The China store lists iOS 17.6 or later for the current 1.2.1 release. Check the requirement for the version you plan to download.</p></div></details>
 <details><summary><span data-zh>需要注册吗？哪些功能收费？</span><span data-en>Do I need an account, and what costs extra?</span></summary><div class="body"><p data-zh>无需注册一卷账号。2.11.1 的 Pro 三项为区域测光、一卷片刻、无限自定义配方，一次买断、无订阅。免费版五类自定义配方合计 5 条。已有配方可继续查看、使用和编辑。购买及恢复由 Apple 处理，详见上方 Pro 说明。</p><p data-en>No Rollbook account is needed. In 2.11.1, Pro unlocks area metering, Rollbook Moments and unlimited custom recipes with a one-time purchase and no subscription. The free tier allows 5 custom recipes across all five process types. Existing recipes remain viewable, usable and editable. Apple handles purchases and restoration; see the Pro details above.</p></div></details>
 <details><summary><span data-zh>支持哪些冲洗工艺与画幅？</span><span data-en>Which processes and film formats are supported?</span></summary><div class="body"><p data-zh>支持黑白负片、黑白反转、C-41、E-6、ECN-2 的分步冲洗计时，以及 135、120、4×5 与 8×10 胶片档案。外部冲扫的胶片也可建档并管理照片。具体药液参数请按适用的原厂资料与实际条件核对。</p><p data-en>Per-step development timers support B&amp;W negative, B&amp;W reversal, C-41, E-6 and ECN-2. Archives support 135, 120, 4×5 and 8×10 film, including lab-processed rolls. Check chemical parameters against the applicable manufacturer instructions and your actual conditions.</p></div></details>
@@ -479,7 +508,7 @@ try{
 
     <div class="rel upcoming">
       <div class="ver">2.11.1 / Build221 · <span data-zh>即将推出</span><span data-en>Coming soon</span></div>
-      <div class="date"><span data-zh>预告更新：2026-10-11 · 提交审核前准备，尚未上架</span><span data-en>Preview updated: 2026-10-11 · Preparing for App Review submission, not yet released</span></div>
+      <div class="date"><span data-zh>预告更新：2026-10-11 · 已提交审核，尚未上架</span><span data-en>Preview updated: 2026-10-11 · Submitted for App Review, not yet released</span></div>
       <ul>
         <li data-zh>相较 1.2.1：加入平均、点、精准点及 Pro 区域测光，结合 ND、倒易律与逐次拍摄记录。</li>
         <li data-en>Since 1.2.1: average, spot, precision spot and Pro area metering, with ND, reciprocity tools and per-shot records.</li>
@@ -587,6 +616,20 @@ function imgFallback(img){
     theme.setAttribute('aria-label', label);
     theme.setAttribute('title', label);
   }
+  function updateScreenshots(l){
+    var imgs=document.querySelectorAll('#screens img[data-src-zh]');
+    for(var i=0;i<imgs.length;i++){
+      var img=imgs[i], key=l==='en' ? 'en' : 'zh';
+      var src=img.getAttribute('data-src-'+key);
+      var label=img.getAttribute('data-alt-'+key);
+      if(img.getAttribute('src')!==src) img.setAttribute('src',src);
+      img.setAttribute('alt',label);
+      var anchor=img.closest('a');
+      if(anchor){anchor.setAttribute('href',src);anchor.setAttribute('aria-label',label);}
+    }
+    var rail=document.querySelector('#screens .shots');
+    if(rail) rail.scrollLeft=0;
+  }
   function set(l){
     if(l!=='zh'&&l!=='en') l='zh';
     var title=document.querySelector('title'), description=document.querySelector('meta[name=description]');
@@ -594,6 +637,7 @@ function imgFallback(img){
     description.setAttribute('content',description.getAttribute('data-description-'+l));
     root.setAttribute('data-lang',l);
     root.setAttribute('lang', l==='zh' ? 'zh-Hans' : 'en');
+    updateScreenshots(l);
     zh.setAttribute('aria-pressed', l==='zh');
     en.setAttribute('aria-pressed', l==='en');
     try{ localStorage.setItem('rb-lang', l); }catch(e){}
